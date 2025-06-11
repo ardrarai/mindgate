@@ -34,7 +34,7 @@ body {
 
 @keyframes pulse {
     0% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
-    50% { box-shadow: 0 0 60px #ff00ff, inset 0 0 40px #ffffff70; transform: scale(1.05); }
+    50% { box-shadow: 0 0 60px #ff00ff, inset 0 0 40px #ffffff70; }
     100% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
 }
 
