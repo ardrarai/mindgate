@@ -1,20 +1,34 @@
+/* Reset Body */
 body {
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
-}
-
-.container {
-    text-align: center;
     position: relative;
-    z-index: 1;
 }
 
+/* Spark canvas always behind */
+#sparkCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Fully centered container */
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Mist wrapper same as before */
 .mist-wrapper {
     position: relative;
     width: 300px;
@@ -100,7 +114,6 @@ body {
     100% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
 }
 
-/* Response Engine Pulse */
 .crystal-orb.active {
     animation: energyPulse 1s ease;
     box-shadow: 0 0 150px #ff00ff, inset 0 0 100px #ffffffcc;
@@ -112,8 +125,19 @@ body {
     100% { transform: translate(-50%, -50%) scale(1); }
 }
 
-/* Chat Box */
+/* Crystal Response centered under orb */
+#crystalResponse {
+    color: #f0f0ff;
+    margin-top: 15px;
+    font-style: italic;
+    font-size: 1.2em;
+    text-shadow: 0 0 8px #9d00ff;
+    transition: opacity 0.5s;
+}
+
+/* Chat Box centered */
 .chat-box {
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -136,16 +160,7 @@ button {
     cursor: pointer;
 }
 
-#crystalResponse {
-    color: #f0f0ff;
-    margin-top: 15px;
-    font-style: italic;
-    font-size: 1.2em;
-    text-shadow: 0 0 8px #9d00ff;
-    transition: opacity 0.5s;
-}
-
-/* Ripple */
+/* Ripple Layer */
 .ripple {
     position: absolute;
     top: 50%;
