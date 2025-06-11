@@ -15,6 +15,13 @@ body {
     z-index: 1;
 }
 
+.mist-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 20px;
+}
+
 .mist-aura {
     position: absolute;
     top: 50%;
@@ -37,19 +44,23 @@ body {
 }
 
 .crystal-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 200px;
     height: 200px;
-    margin: 0 auto 20px;
     border-radius: 50%;
     background: radial-gradient(circle, #ffffff33, #ffffff00);
     box-shadow: 0 0 50px #9d00ff, inset 0 0 30px #ffffff50;
     animation: pulse 3s infinite;
     transition: transform 0.3s, box-shadow 0.3s;
+    z-index: 1;
 }
 
 .crystal-orb:hover {
     animation-play-state: paused;
-    transform: scale(1.15) rotate(5deg);
+    transform: translate(-50%, -50%) scale(1.15) rotate(5deg);
     box-shadow: 0 0 100px #ff00ff, inset 0 0 80px #ffffffcc;
 }
 
