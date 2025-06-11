@@ -26,9 +26,9 @@ sendBtn.addEventListener('click', () => {
 });
 
 function activatePulse() {
-    orb.classList.add('active');
+    orb.classList.add('distort');
     setTimeout(() => {
-        orb.classList.remove('active');
+        orb.classList.remove('distort');
     }, 1000);
 }
 
