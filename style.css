@@ -176,3 +176,33 @@ button {
     0% { width: 0; height: 0; opacity: 0.7; }
     100% { width: 300px; height: 300px; opacity: 0; }
 }
+
+.solar-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg, 
+        rgba(255, 255, 255, 0.05), 
+        rgba(255, 0, 255, 0.2), 
+        rgba(255, 255, 255, 0.05)
+    );
+    filter: blur(60px);
+    opacity: 0.3;
+    z-index: -2;
+    animation: solarSpin 30s linear infinite, solarPulse 6s ease-in-out infinite;
+}
+
+@keyframes solarSpin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes solarPulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
