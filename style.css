@@ -180,3 +180,12 @@ button {
         opacity: 0;
     }
 }
+
+#crystalResponse {
+    color: #f0f0ff;
+    margin-top: 15px;
+    font-style: italic;
+    font-size: 1.1em;
+    text-shadow: 0 0 8px #9d00ff;
+    transition: opacity 0.5s;
+}
