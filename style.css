@@ -22,6 +22,26 @@ body {
     margin: 0 auto 20px;
 }
 
+/* 🧿 Runic Ring */
+.runic-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    height: 280px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    animation: runicRotate 60s linear infinite;
+    z-index: 0;
+}
+
+@keyframes runicRotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 /* 🔮 Light Beam Layer */
 .beam-aura {
     position: absolute;
