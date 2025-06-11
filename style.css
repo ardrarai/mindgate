@@ -24,14 +24,16 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 50px #9d00ff, inset 0 0 30px #ffffff50; }
-    50% { box-shadow: 0 0 80px #ff00ff, inset 0 0 50px #ffffff99; }
+    0% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
+    50% { box-shadow: 0 0 60px #ff00ff, inset 0 0 40px #ffffff70; transform: scale(1.05); }
+    100% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
 }
 
 .chat-box {
     display: flex;
     justify-content: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 input {
@@ -48,4 +50,10 @@ button {
     background-color: #9d00ff;
     color: white;
     cursor: pointer;
+}
+
+.chat-box p {
+    color: #fff;
+    margin-top: 10px;
+    font-style: italic;
 }
