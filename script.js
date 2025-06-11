@@ -4,7 +4,7 @@ const orb = document.querySelector('.crystal-orb');
 const rippleContainer = document.querySelector('.ripple-container');
 const crystalResponse = document.getElementById('crystalResponse');
 
-const responses = [
+const randomResponses = [
     "The winds whisper your fate.",
     "The path ahead shimmers faintly.",
     "Darkness watches. Light endures.",
@@ -16,11 +16,11 @@ const responses = [
 ];
 
 sendBtn.addEventListener('click', () => {
-    const inputText = userInput.value.trim();
+    const inputText = userInput.value.trim().toLowerCase();
     if (inputText !== '') {
         activatePulse();
         createRipple();
-        generateResponse();
+        generateResponse(inputText);
         userInput.value = '';
     }
 });
@@ -42,7 +42,21 @@ function createRipple() {
     }, 1000);
 }
 
-function generateResponse() {
-    const randomIndex = Math.floor(Math.random() * responses.length);
-    crystalResponse.textContent = responses[randomIndex];
+function generateResponse(input) {
+    let response = "";
+
+    if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
+        response = "Greetings, seeker of light.";
+    } else if (input.includes("who") && input.includes("you")) {
+        response = "I am the gatekeeper of echoes.";
+    } else if (input.includes("what") && input.includes("you")) {
+        response = "I am but a vessel of forgotten knowledge.";
+    } else if (input.includes("bye") || input.includes("goodbye")) {
+        response = "The echoes shall await your return.";
+    } else {
+        const randomIndex = Math.floor(Math.random() * randomResponses.length);
+        response = randomResponses[randomIndex];
+    }
+
+    crystalResponse.textContent = response;
 }
