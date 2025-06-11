@@ -57,5 +57,21 @@ function generateResponse(input) {
         response = randomResponses[randomIndex];
     }
 
-    crystalResponse.textContent = response;
+    typeWriter(response);
+}
+
+function typeWriter(text) {
+    let i = 0;
+    crystalResponse.textContent = "";
+    const speed = 50;
+
+    function type() {
+        if (i < text.length) {
+            crystalResponse.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
 }
