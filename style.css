@@ -74,11 +74,18 @@ body {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, #6e00ff, #2b003d);
+    background: linear-gradient(135deg, #ff00ff, #6e00ff, #2b003d);
+    background-size: 400% 400%;
+    animation: plasmaMove 10s ease infinite, pulse 3s infinite;
     box-shadow: 0 0 50px #9d00ff, inset 0 0 30px #ffffff50;
-    animation: pulse 3s infinite;
     transition: transform 0.3s, box-shadow 0.3s;
     z-index: 2;
+}
+
+@keyframes plasmaMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .crystal-orb:hover {
