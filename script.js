@@ -36,7 +36,6 @@ function createRipple() {
     const ripple = document.createElement('div');
     ripple.classList.add('ripple');
     rippleContainer.appendChild(ripple);
-
     setTimeout(() => {
         ripple.remove();
     }, 1000);
