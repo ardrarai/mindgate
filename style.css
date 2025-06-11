@@ -23,6 +23,12 @@ body {
     background: radial-gradient(circle, #ffffff33, #ffffff00);
     box-shadow: 0 0 50px #9d00ff, inset 0 0 30px #ffffff50;
     animation: pulse 3s infinite;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.crystal-orb:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 0 80px #ff00ff, inset 0 0 60px #ffffffaa;
 }
 
 @keyframes pulse {
