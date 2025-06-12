@@ -1,15 +1,14 @@
-/* Reset Body */
+/* Basic Setup */
 body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    height: 100vh;
+    background: radial-gradient(circle, #0a001a, #000);
     overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
 }
 
-/* Spark canvas always behind */
+/* Canvas for sparks */
 #sparkCanvas {
     position: fixed;
     top: 0;
@@ -19,164 +18,23 @@ body {
     z-index: -1;
 }
 
-/* Fully centered container */
+/* Container */
 .container {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
-/* Mist wrapper */
+/* Mist Wrapper */
 .mist-wrapper {
     position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto 20px;
+    width: 400px;
+    height: 400px;
 }
 
-/* Light Beam Layer */
-.beam-aura {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300px;
-    height: 300px;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, rgba(255, 0, 255, 0.1), rgba(255, 255, 255, 0.15), rgba(255, 0, 255, 0.1));
-    filter: blur(30px);
-    opacity: 0.5;
-    animation: beamRotate 20s linear infinite;
-    z-index: 0;
-}
-
-@keyframes beamRotate {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Mist Aura */
-.mist-aura {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300px;
-    height: 300px;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 0, 255, 0.15), rgba(0,0,0,0));
-    filter: blur(30px);
-    opacity: 0.6;
-    animation: mistBreath 5s infinite ease-in-out;
-    z-index: 1;
-}
-
-@keyframes mistBreath {
-    0% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
-    100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-}
-
-/* Crystal Orb */
-.crystal-orb {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ff00ff, #6e00ff, #2b003d);
-    background-size: 400% 400%;
-    animation: plasmaMove 10s ease infinite, pulse 3s infinite;
-    box-shadow: 0 0 50px #9d00ff, inset 0 0 30px #ffffff50;
-    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-    z-index: 2;
-}
-
-@keyframes plasmaMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.crystal-orb:hover {
-    animation-play-state: paused;
-    transform: translate(-50%, -50%) scale(1.15) rotate(5deg);
-    box-shadow: 0 0 100px #ff00ff, inset 0 0 80px #ffffffcc;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
-    50% { box-shadow: 0 0 60px #ff00ff, inset 0 0 40px #ffffff70; }
-    100% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
-}
-
-/* Distortion effect when activated */
-.crystal-orb.distort {
-    filter: blur(2px) brightness(1.3) hue-rotate(20deg);
-    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
-    box-shadow: 0 0 150px #ff00ff, inset 0 0 100px #ffffffcc;
-}
-
-/* Crystal Response centered under orb */
-#crystalResponse {
-    color: #f0f0ff;
-    margin-top: 15px;
-    font-style: italic;
-    font-size: 1.2em;
-    text-shadow: 0 0 8px #9d00ff;
-    transition: opacity 0.5s;
-}
-
-/* Chat Box */
-.chat-box {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-input {
-    padding: 10px;
-    width: 200px;
-    border: none;
-    border-radius: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    background-color: #9d00ff;
-    color: white;
-    cursor: pointer;
-}
-
-/* Ripple effect */
-.ripple {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border: 2px solid rgba(255, 0, 255, 0.5);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-    pointer-events: none;
-    animation: rippleEffect 1s ease-out forwards;
-    z-index: 1;
-}
-
-@keyframes rippleEffect {
-    0% { width: 0; height: 0; opacity: 0.7; }
-    100% { width: 300px; height: 300px; opacity: 0; }
-}
-
+/* Solar Burst */
 .solar-burst {
     position: absolute;
     top: 50%;
@@ -207,52 +65,112 @@ button {
     50% { opacity: 0.4; }
 }
 
+/* Beam Aura */
+.beam-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,0,255,0.15), transparent);
+    border-radius: 50%;
+    z-index: -3;
+    animation: pulse 4s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Mist Aura */
+.mist-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.05), transparent);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -2;
+    animation: mistBreath 8s infinite;
+}
+
+@keyframes mistBreath {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Crystal Shards */
 .crystal-shard {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 20px;
-    height: 40px;
-    background: linear-gradient(135deg, #ffffff88, #ff00ff88);
-    border-radius: 5px;
+    width: 18px;
+    height: 38px;
+    background: linear-gradient(145deg, #ffffffaa, #ff00ffcc, #6e00ffaa);
+    border-radius: 4px;
     transform-origin: center center;
-    filter: drop-shadow(0 0 5px #ff00ffcc);
-    opacity: 0.8;
+    filter: drop-shadow(0 0 8px #ff00ffcc) blur(0.3px);
+    opacity: 0.7;
     z-index: 1;
-    animation-timing-function: linear;
+    animation: orbitUnified 40s linear infinite;
+    box-shadow: inset 0 0 8px #ffffff55, 0 0 12px #ff00ff88;
+    transform: rotate(45deg);
 }
 
-/* Unique animations for each shard */
-.shard1 {
-    animation: orbit1 30s linear infinite;
-}
-.shard2 {
-    animation: orbit2 40s linear infinite;
-}
-.shard3 {
-    animation: orbit3 50s linear infinite;
-}
-.shard4 {
-    animation: orbit4 60s linear infinite;
-}
+.shard1 { transform: rotate(45deg); }
+.shard2 { transform: rotate(90deg); }
+.shard3 { transform: rotate(135deg); }
+.shard4 { transform: rotate(180deg); }
 
-/* Keyframes for orbit paths */
-@keyframes orbit1 {
-    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); }
+@keyframes orbitUnified {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(-0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); }
 }
 
-@keyframes orbit2 {
-    0% { transform: translate(-50%, -50%) rotate(90deg) translateX(120px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(450deg) translateX(120px) rotate(-360deg); }
+/* Crystal Orb */
+.crystal-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, #222, #555);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+    z-index: 2;
 }
 
-@keyframes orbit3 {
-    0% { transform: translate(-50%, -50%) rotate(180deg) translateX(160px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(540deg) translateX(160px) rotate(-360deg); }
+/* Response Area */
+.response {
+    margin-top: 20px;
+    font-size: 1.2em;
 }
 
-@keyframes orbit4 {
-    0% { transform: translate(-50%, -50%) rotate(270deg) translateX(100px) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(630deg) translateX(100px) rotate(-360deg); }
+/* Input Box */
+.input-container {
+    margin-top: 20px;
+}
+
+input {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+    width: 250px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+    background: #ff00ff;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
 }
