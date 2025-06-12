@@ -43,6 +43,17 @@ const dialogues = {
     ]
 };
 
+const auraColors = {
+    greetings: '#8ecae6',
+    farewell: '#ffb5c2',
+    identity: '#ffffff',
+    purpose: '#00ffff',
+    power: '#ffe066',
+    future: '#c084fc',
+    danger: '#ff6b6b',
+    unknown: '#ffffff'
+};
+
 sendBtn.addEventListener('click', () => {
     const inputText = userInput.value.trim().toLowerCase();
     if (inputText !== '') {
@@ -83,6 +94,11 @@ function generateResponse(input) {
     const possibleResponses = dialogues[category];
     const response = possibleResponses[Math.floor(Math.random() * possibleResponses.length)];
 
+    // Change aura color
+    orb.style.boxShadow = `0 0 60px 30px ${auraColors[category]}`;
+    orb.style.borderColor = auraColors[category];
+
+
     typeWriter(response);
 }
 
@@ -97,9 +113,17 @@ function typeWriter(text) {
 
     function type() {
         if (i < text.length) {
-            crystalResponse.textContent += text.charAt(i);
+            const char = text.charAt(i);
+            crystalResponse.textContent += char;
             i++;
-            setTimeout(type, speed);
+
+            // Pause slightly after punctuation for whisper effect
+            let delay = speed;
+            if (char === '.' || char === ',' || char === ':' || char === '-') {
+                delay = 400;
+            }
+
+            setTimeout(type, delay);
         }
     }
 
