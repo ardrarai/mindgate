@@ -131,14 +131,3 @@ function animateSparks() {
 createSparks(150);
 animateSparks();
 
-// Add this after your existing JS
-const glitterLayer = document.querySelector('.glitter-layer');
-
-for (let i = 0; i < 30; i++) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.top = `${Math.random() * 100}%`;
-    particle.style.left = `${Math.random() * 100}%`;
-    particle.style.animationDuration = `${8 + Math.random() * 4}s`;
-    glitterLayer.appendChild(particle);
-}
