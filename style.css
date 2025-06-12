@@ -28,6 +28,7 @@ body {
     text-align: center;
 }
 
+/* Pulse wrapper for ambient breathing */
 .pulse-wrapper {
     animation: ambientPulse 20s ease-in-out infinite;
 }
@@ -187,6 +188,7 @@ button {
     100% { width: 300px; height: 300px; opacity: 0; }
 }
 
+/* Solar Burst Background */
 .solar-burst {
     position: absolute;
     top: 50%;
@@ -216,4 +218,3 @@ button {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 0.4; }
 }
-
