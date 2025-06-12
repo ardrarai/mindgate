@@ -26,7 +26,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    animation: ambientPulse 20s ease-in-out infinite;
 }
+
 
 /* Mist wrapper */
 .mist-wrapper {
@@ -207,3 +209,8 @@ button {
     50% { opacity: 0.4; }
 }
 
+@keyframes ambientPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.015); opacity: 0.95; }
+    100% { transform: scale(1); opacity: 1; }
+}
