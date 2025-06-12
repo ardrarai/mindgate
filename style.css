@@ -28,7 +28,7 @@ body {
     text-align: center;
 }
 
-/* Mist wrapper same as before */
+/* Mist wrapper */
 .mist-wrapper {
     position: relative;
     width: 300px;
@@ -92,7 +92,7 @@ body {
     background-size: 400% 400%;
     animation: plasmaMove 10s ease infinite, pulse 3s infinite;
     box-shadow: 0 0 50px #9d00ff, inset 0 0 30px #ffffff50;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
     z-index: 2;
 }
 
@@ -114,15 +114,11 @@ body {
     100% { box-shadow: 0 0 30px #9d00ff, inset 0 0 20px #ffffff30; }
 }
 
-.crystal-orb.active {
-    animation: energyPulse 1s ease;
+/* Distortion effect when activated */
+.crystal-orb.distort {
+    filter: blur(2px) brightness(1.3) hue-rotate(20deg);
+    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
     box-shadow: 0 0 150px #ff00ff, inset 0 0 100px #ffffffcc;
-}
-
-@keyframes energyPulse {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.3) rotate(10deg); }
-    100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 /* Crystal Response centered under orb */
@@ -135,8 +131,8 @@ body {
     transition: opacity 0.5s;
 }
 
-/* Input Box centered */
-.input-box {
+/* Chat Box */
+.chat-box {
     margin-top: 15px;
     display: flex;
     justify-content: center;
@@ -160,7 +156,7 @@ button {
     cursor: pointer;
 }
 
-/* Ripple Layer */
+/* Ripple effect */
 .ripple {
     position: absolute;
     top: 50%;
@@ -179,4 +175,34 @@ button {
 @keyframes rippleEffect {
     0% { width: 0; height: 0; opacity: 0.7; }
     100% { width: 300px; height: 300px; opacity: 0; }
+}
+
+.solar-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg, 
+        rgba(255, 255, 255, 0.05), 
+        rgba(255, 0, 255, 0.2), 
+        rgba(255, 255, 255, 0.05)
+    );
+    filter: blur(60px);
+    opacity: 0.3;
+    z-index: -2;
+    animation: solarSpin 30s linear infinite, solarPulse 6s ease-in-out infinite;
+}
+
+@keyframes solarSpin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes solarPulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
 }
