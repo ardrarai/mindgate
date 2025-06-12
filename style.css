@@ -206,3 +206,53 @@ button {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 0.4; }
 }
+
+.crystal-shard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 40px;
+    background: linear-gradient(135deg, #ffffff88, #ff00ff88);
+    border-radius: 5px;
+    transform-origin: center center;
+    filter: drop-shadow(0 0 5px #ff00ffcc);
+    opacity: 0.8;
+    z-index: 1;
+    animation-timing-function: linear;
+}
+
+/* Unique animations for each shard */
+.shard1 {
+    animation: orbit1 30s linear infinite;
+}
+.shard2 {
+    animation: orbit2 40s linear infinite;
+}
+.shard3 {
+    animation: orbit3 50s linear infinite;
+}
+.shard4 {
+    animation: orbit4 60s linear infinite;
+}
+
+/* Keyframes for orbit paths */
+@keyframes orbit1 {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); }
+}
+
+@keyframes orbit2 {
+    0% { transform: translate(-50%, -50%) rotate(90deg) translateX(120px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(450deg) translateX(120px) rotate(-360deg); }
+}
+
+@keyframes orbit3 {
+    0% { transform: translate(-50%, -50%) rotate(180deg) translateX(160px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(540deg) translateX(160px) rotate(-360deg); }
+}
+
+@keyframes orbit4 {
+    0% { transform: translate(-50%, -50%) rotate(270deg) translateX(100px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(630deg) translateX(100px) rotate(-360deg); }
+}
