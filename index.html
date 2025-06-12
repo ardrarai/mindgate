@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mindgate</title>
+    <title>Mindgate - Crystal Orb</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,23 +10,26 @@
 
     <div class="container">
         <div class="mist-wrapper">
+
             <div class="solar-burst"></div>
             <div class="beam-aura"></div>
             <div class="mist-aura"></div>
             <div class="ripple-container"></div>
-            <!-- New Shards -->
+
+            <!-- Crystal Shards -->
             <div class="crystal-shard shard1"></div>
             <div class="crystal-shard shard2"></div>
             <div class="crystal-shard shard3"></div>
             <div class="crystal-shard shard4"></div>
+
             <div class="crystal-orb"></div>
         </div>
 
-        <p id="crystalResponse"></p>
+        <div class="response" id="response"></div>
 
-        <div class="chat-box">
-            <input type="text" id="userInput" placeholder="Speak to the crystal...">
-            <button id="sendBtn">Send</button>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Ask the orb...">
+            <button onclick="submitInput()">Send</button>
         </div>
     </div>
 
