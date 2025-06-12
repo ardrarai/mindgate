@@ -44,15 +44,16 @@ const dialogues = {
 };
 
 const auraColors = {
-    greetings: #8ecae6,
-    farewell: #ffb5c2,
-    identity: #ffffff,
-    purpose: #00ffff,
-    power: #ffe066,
-    future: #c084fc,
-    danger: #ff6b6b,
-    unknown: #ffffff
+    greetings: '#8ecae6',
+    farewell: '#ffb5c2',
+    identity: '#ffffff',
+    purpose: '#00ffff',
+    power: '#ffe066',
+    future: '#c084fc',
+    danger: '#ff6b6b',
+    unknown: '#ffffff'
 };
+
 
 sendBtn.addEventListener('click', () => {
     const inputText = userInput.value.trim().toLowerCase();
