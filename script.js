@@ -4,25 +4,44 @@ const orb = document.querySelector('.crystal-orb');
 const rippleContainer = document.querySelector('.ripple-container');
 const crystalResponse = document.getElementById('crystalResponse');
 
-const randomResponses = [
-    "The winds whisper your fate.",
-    "The path ahead shimmers faintly.",
-    "Darkness watches. Light endures.",
-    "Energy flows where focus goes.",
-    "You are closer than you think.",
-    "The unknown bends to your will.",
-    "Echoes ripple through time.",
-    "The gate remains... for now."
-];
-
-const loreResponses = [
-    { keywords: ["who", "you"], response: "I am Mindgate, guardian of echoes, keeper of lost intentions." },
-    { keywords: ["purpose", "why"], response: "My existence anchors the unstable threads of thought. I reveal fragments of truth." },
-    { keywords: ["power"], response: "Power lies in intent. The stronger your will, the brighter the crystal burns." },
-    { keywords: ["future"], response: "Time folds strangely. I glimpse shadows, but futures remain unwritten." },
-    { keywords: ["danger"], response: "The darker currents stir beyond your perception. Tread carefully." }
-];
-
+const dialogues = {
+    greetings: [
+        "Greetings, seeker of light.",
+        "The crystal acknowledges your presence.",
+        "Welcome to the chamber of echoes."
+    ],
+    farewell: [
+        "The echoes shall await your return.",
+        "Depart if you must. The energy remains.",
+        "Until next convergence."
+    ],
+    identity: [
+        "I am Mindgate, guardian of echoes, keeper of lost intentions.",
+        "This form you see is but a fragment of my true essence."
+    ],
+    purpose: [
+        "I exist to stabilize unstable thought threads. I reveal fragments of truth.",
+        "My purpose is to guide seekers like you through uncertainty."
+    ],
+    power: [
+        "Power lies in intent. The stronger your will, the brighter the crystal burns.",
+        "All power begins with focused thought."
+    ],
+    future: [
+        "Time folds strangely. I glimpse shadows, but futures remain unwritten.",
+        "The future is fluid. Only your choices solidify its shape."
+    ],
+    danger: [
+        "The darker currents stir beyond your perception. Tread carefully.",
+        "Shadows linger where light is absent."
+    ],
+    unknown: [
+        "The winds whisper your fate.",
+        "Energy flows where focus goes.",
+        "Echoes ripple through time.",
+        "The unknown bends to your will."
+    ]
+};
 
 sendBtn.addEventListener('click', () => {
     const inputText = userInput.value.trim().toLowerCase();
@@ -51,22 +70,24 @@ function createRipple() {
 }
 
 function generateResponse(input) {
-    let response = "";
+    let category = "unknown";
 
-    if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
-        response = "Greetings, seeker of light.";
-    } else if (input.includes("who") && input.includes("you")) {
-        response = "I am the gatekeeper of echoes.";
-    } else if (input.includes("what") && input.includes("you")) {
-        response = "I am but a vessel of forgotten knowledge.";
-    } else if (input.includes("bye") || input.includes("goodbye")) {
-        response = "The echoes shall await your return.";
-    } else {
-        const randomIndex = Math.floor(Math.random() * randomResponses.length);
-        response = randomResponses[randomIndex];
-    }
+    if (match(input, ["hi", "hello", "hey"])) category = "greetings";
+    else if (match(input, ["bye", "goodbye", "farewell"])) category = "farewell";
+    else if (match(input, ["who", "are", "you", "name"])) category = "identity";
+    else if (match(input, ["why", "purpose", "exist"])) category = "purpose";
+    else if (match(input, ["power", "strength", "energy"])) category = "power";
+    else if (match(input, ["future", "destiny", "tomorrow"])) category = "future";
+    else if (match(input, ["danger", "threat", "risk"])) category = "danger";
+
+    const possibleResponses = dialogues[category];
+    const response = possibleResponses[Math.floor(Math.random() * possibleResponses.length)];
 
     typeWriter(response);
+}
+
+function match(input, keywords) {
+    return keywords.some(keyword => input.includes(keyword));
 }
 
 function typeWriter(text) {
