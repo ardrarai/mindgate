@@ -1,72 +1,77 @@
-function handleInput() {
-  const input = document.getElementById("userInput").value.toLowerCase().trim();
-  const responseBox = document.getElementById("responseBox");
+const sendBtn = document.getElementById('sendBtn');
+const userInput = document.getElementById('userInput');
+const orb = document.querySelector('.crystal-orb');
+const rippleContainer = document.querySelector('.ripple-container');
+const crystalResponse = document.getElementById('crystalResponse');
 
-  let response = "The orb hums quietly...";
+const randomResponses = [
+    "The winds whisper your fate.",
+    "The path ahead shimmers faintly.",
+    "Darkness watches. Light endures.",
+    "Energy flows where focus goes.",
+    "You are closer than you think.",
+    "The unknown bends to your will.",
+    "Echoes ripple through time.",
+    "The gate remains... for now."
+];
 
-  if (input.includes("hi") || input.includes("hello")) {
-    response = "Greetings, seeker. What truth do you seek?";
-  } else if (input.includes("who are you")) {
-    response = "I am the gatekeeper of the Mind. A fragment of thought given form.";
-  } else if (input.includes("why am i here")) {
-    response = "You are here because the orb called you. And you answered.";
-  }
-
-  responseBox.textContent = response;
-  document.getElementById("userInput").value = "";
-}
-
-// Spark Particle Engine
-
-const canvas = document.getElementById('sparkCanvas');
-const ctx = canvas.getContext('2d');
-let sparks = [];
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function createSparks(count) {
-  for (let i = 0; i < count; i++) {
-    sparks.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 1,
-      speedY: Math.random() * 0.5 + 0.2,
-      opacity: Math.random() * 0.5 + 0.3
-    });
-  }
-}
-
-function drawSparks() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let spark of sparks) {
-    ctx.beginPath();
-    ctx.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, 255, 255, ${spark.opacity})`;
-    ctx.fill();
-  }
-}
-
-function updateSparks() {
-  for (let spark of sparks) {
-    spark.y += spark.speedY;
-    if (spark.y > canvas.height) {
-      spark.y = 0;
-      spark.x = Math.random() * canvas.width;
+sendBtn.addEventListener('click', () => {
+    const inputText = userInput.value.trim().toLowerCase();
+    if (inputText !== '') {
+        activatePulse();
+        createRipple();
+        generateResponse(inputText);
+        userInput.value = '';
     }
-  }
+});
+
+function activatePulse() {
+    orb.classList.add('distort');
+    setTimeout(() => {
+        orb.classList.remove('distort');
+    }, 1000);
 }
 
-function animateSparks() {
-  drawSparks();
-  updateSparks();
-  requestAnimationFrame(animateSparks);
+function createRipple() {
+    const ripple = document.createElement('div');
+    ripple.classList.add('ripple');
+    rippleContainer.appendChild(ripple);
+    setTimeout(() => {
+        ripple.remove();
+    }, 1000);
 }
 
-createSparks(150);
-animateSparks();
+function generateResponse(input) {
+    let response = "";
+
+    if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
+        response = "Greetings, seeker of light.";
+    } else if (input.includes("who") && input.includes("you")) {
+        response = "I am the gatekeeper of echoes.";
+    } else if (input.includes("what") && input.includes("you")) {
+        response = "I am but a vessel of forgotten knowledge.";
+    } else if (input.includes("bye") || input.includes("goodbye")) {
+        response = "The echoes shall await your return.";
+    } else {
+        const randomIndex = Math.floor(Math.random() * randomResponses.length);
+        response = randomResponses[randomIndex];
+    }
+
+    typeWriter(response);
+}
+
+function typeWriter(text) {
+    let i = 0;
+    crystalResponse.textContent = "";
+    const speed = 50;
+
+    function type() {
+        if (i < text.length) {
+            crystalResponse.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
