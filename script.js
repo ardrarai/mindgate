@@ -1,133 +1,68 @@
-const sendBtn = document.getElementById('sendBtn');
-const userInput = document.getElementById('userInput');
-const orb = document.querySelector('.crystal-orb');
-const rippleContainer = document.querySelector('.ripple-container');
-const crystalResponse = document.getElementById('crystalResponse');
+const crystal = document.querySelector('.crystal-orb');
+const responseBox = document.getElementById('crystalResponse');
 
-const randomResponses = [
-    "The winds whisper your fate.",
-    "The path ahead shimmers faintly.",
-    "Darkness watches. Light endures.",
-    "Energy flows where focus goes.",
-    "You are closer than you think.",
-    "The unknown bends to your will.",
-    "Echoes ripple through time.",
-    "The gate remains... for now."
-];
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input.value.trim().toLowerCase();
 
-sendBtn.addEventListener('click', () => {
-    const inputText = userInput.value.trim().toLowerCase();
-    if (inputText !== '') {
-        activatePulse();
-        createRipple();
-        generateResponse(inputText);
-        userInput.value = '';
-    }
-});
-
-function activatePulse() {
-    orb.classList.add('distort');
+    crystal.classList.add('distort');
     setTimeout(() => {
-        orb.classList.remove('distort');
-    }, 1000);
-}
+        crystal.classList.remove('distort');
+    }, 800);
 
-function createRipple() {
-    const ripple = document.createElement('div');
-    ripple.classList.add('ripple');
-    rippleContainer.appendChild(ripple);
-    setTimeout(() => {
-        ripple.remove();
-    }, 1000);
-}
-
-function generateResponse(input) {
-    let response = "";
-
-    if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
-        response = "Greetings, seeker of light.";
-    } else if (input.includes("who") && input.includes("you")) {
-        response = "I am the gatekeeper of echoes.";
-    } else if (input.includes("what") && input.includes("you")) {
-        response = "I am but a vessel of forgotten knowledge.";
-    } else if (input.includes("bye") || input.includes("goodbye")) {
-        response = "The echoes shall await your return.";
-    } else {
-        const randomIndex = Math.floor(Math.random() * randomResponses.length);
-        response = randomResponses[randomIndex];
+    let reply = "The crystal contemplates...";
+    if (message.includes("hi") || message.includes("hello")) {
+        reply = "Greetings, curious soul!";
+    } else if (message.includes("future")) {
+        reply = "The future is a swirling mist. Trust your path.";
+    } else if (message.includes("love")) {
+        reply = "Love blooms where hearts remain open.";
+    } else if (message.includes("yes")) {
+        reply = "The crystal nods in quiet approval.";
+    } else if (message.includes("no")) {
+        reply = "The answer hides for now. Seek again.";
     }
 
-    typeWriter(response);
+    responseBox.textContent = reply;
+    input.value = "";
 }
 
-function typeWriter(text) {
-    let i = 0;
-    crystalResponse.textContent = "";
-    const speed = 50;
-
-    function type() {
-        if (i < text.length) {
-            crystalResponse.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-
-    type();
-}
-
-// Spark Particle Engine
-
+// Sparkle background
 const canvas = document.getElementById('sparkCanvas');
 const ctx = canvas.getContext('2d');
-let sparks = [];
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-function resizeCanvas() {
+const particles = [];
+for (let i = 0; i < 100; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speedX: (Math.random() - 0.5) * 0.2,
+        speedY: (Math.random() - 0.5) * 0.2
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.fill();
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-}
-
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function createSparks(count) {
-    for (let i = 0; i < count; i++) {
-        sparks.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 2 + 1,
-            speedY: Math.random() * 0.5 + 0.2,
-            opacity: Math.random() * 0.5 + 0.3
-        });
-    }
-}
-
-function drawSparks() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let spark of sparks) {
-        ctx.beginPath();
-        ctx.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${spark.opacity})`;
-        ctx.fill();
-    }
-}
-
-function updateSparks() {
-    for (let spark of sparks) {
-        spark.y += spark.speedY;
-        if (spark.y > canvas.height) {
-            spark.y = 0;
-            spark.x = Math.random() * canvas.width;
-        }
-    }
-}
-
-function animateSparks() {
-    drawSparks();
-    updateSparks();
-    requestAnimationFrame(animateSparks);
-}
-
-createSparks(150);
-animateSparks();
-
+});
