@@ -135,8 +135,8 @@ body {
     transition: opacity 0.5s;
 }
 
-/* Chat Box centered */
-.chat-box {
+/* Input Box centered */
+.input-box {
     margin-top: 15px;
     display: flex;
     justify-content: center;
